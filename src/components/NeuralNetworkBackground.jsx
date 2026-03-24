@@ -1,0 +1,107 @@
+import React, { useEffect, useRef } from 'react';
+
+const NeuralNetworkBackground = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    
+    let animationFrameId;
+    let particles = [];
+    
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.6; // Slow drift
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 1.5 + 0.8;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off canvas edges smoothly
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.fill();
+      }
+    }
+
+    const initParticles = () => {
+      particles = [];
+      const numParticles = Math.min(Math.floor((canvas.width * canvas.height) / 9000), 120);
+      for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    const drawLines = () => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 160) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = 1 - distance / 160;
+            ctx.strokeStyle = `rgba(100, 150, 255, ${opacity * 0.35})`; // Subtle blue tint
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      drawLines();
+      
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return (
+    <canvas 
+      ref={canvasRef} 
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'block'
+      }}
+    />
+  );
+};
+
+export default NeuralNetworkBackground;
