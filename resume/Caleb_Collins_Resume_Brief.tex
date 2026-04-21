@@ -1,0 +1,157 @@
+%-------------------------------------------------------------------
+% Caleb Collins - AI/ML Software Engineer Resume (BRIEF, single page)
+% ATS-optimized: single column, standard fonts, no graphics/tables
+% Compile with: pdflatex Caleb_Collins_Resume_Brief.tex
+%
+% Compressed from the full resume to fit on one page via:
+%   - 10pt body font (vs 11pt)
+%   - 0.5in margins on all sides (geometry)
+%   - Condensed bullets (1-3 per project, 2 for leadership)
+%   - Uniform 4pt breathing room between headings and first bullet
+%-------------------------------------------------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+% Page margins - 0.5in on all sides (tight but professional)
+\usepackage[left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\pagestyle{empty}
+
+% Section formatting - reduced spacing
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule\vspace{-2pt}]
+
+%-------------------------------------------------------------------
+% Custom commands
+%-------------------------------------------------------------------
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-2pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{1.5pt}\item
+      \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\small #2} \\
+      \end{tabular*}\vspace{-2pt}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+% leftmargin=0pt keeps subheadings flush-left with section titles so tabulars
+% can use the full \textwidth without overhanging the right page margin.
+% itemsep=0pt is neutral; tightness is achieved via the \vspace adjustments
+% inside \resumeSubheading, \resumeProjectHeading, and \resumeItemListEnd.
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt, parsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+% topsep=4pt gives consistent breathing room between any heading and the first bullet.
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.18in, itemsep=0pt, parsep=0pt, topsep=4pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+%-------------------------------------------------------------------
+\begin{document}
+
+%-------------------- HEADER --------------------
+\begin{center}
+    {\LARGE \scshape Caleb Collins} \\ \vspace{2pt}
+    \small Midlothian, VA 23112 ~|~ (804) 389-6009 ~|~
+    \href{mailto:caleb.coll4@gmail.com}{caleb.coll4@gmail.com} \\
+    \small \textit{LinkedIn:} \href{https://www.linkedin.com/in/caleb-collins-5b85572b2}{linkedin.com/in/caleb-collins-5b85572b2} ~|~ \textit{GitHub:} \href{https://github.com/CalebCollins4}{github.com/CalebCollins4}
+\end{center}
+
+%-------------------- SUMMARY --------------------
+\section{Professional Summary}
+\small Computer Engineering graduate student at Virginia Tech (Software \& Machine Intelligence) with end-to-end ML experience in \textbf{PyTorch, Hugging Face Transformers, and scikit-learn}. Project work spans \textbf{agentic LLM systems (ReAct)}, knn song recommender, computer vision, and autonomous robotics. Seeking an \textbf{AI/ML Software Engineer} role to ship production-grade intelligent systems.
+
+%-------------------- TECHNICAL SKILLS --------------------
+\section{Technical Skills}
+\small
+\begin{itemize}[leftmargin=0.15in, itemsep=0pt, parsep=0pt, topsep=1pt, label={}]
+    \item \textbf{Programming Languages:} Python, C, Java, SQL, R
+    \item \textbf{Machine Learning \& Deep Learning:} PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face Transformers, XGBoost
+    \item \textbf{AI Specializations:} Deep Learning, Reinforcement Learning, Computer Vision, NLP, LLM Agents \& Tool Calling, Agentic AI (ReAct), Transformers, RNN/LSTM, CNN, Ensemble Methods, k-NN \& Recommender Systems
+    \item \textbf{Data Engineering \& Analysis:} Pandas, NumPy, Feature Engineering, Feature Scaling (Log / Yeo-Johnson), Outlier Detection, Cross-Validation, Hyperparameter Tuning, ETL Pipelines, Matplotlib, Seaborn
+    \item \textbf{Software Engineering:} Git/GitHub, RESTful APIs, Agile/Scrum, Test-Driven Development, CI/CD fundamentals
+    \item \textbf{Robotics \& Embedded:} ROS2, LiDAR, ArUco Marker Detection, Kinematics, Autonomous Navigation
+    \item \textbf{Tools \& Environments:} Jupyter, Google Colab, VS Code, Anaconda, Local LLM Inference
+\end{itemize}
+
+%-------------------- EDUCATION --------------------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Virginia Tech}{Blacksburg, VA}
+      {Master of Engineering in Computer Engineering -- Concentration: Software and Machine Intelligence}{Expected: Dec 2026}
+      \resumeItemListStart
+        \resumeItem{\textbf{Coursework:} Advanced Machine Learning, Applications of Machine Learning, Mathematical Foundations of Reinforcement Learning}
+      \resumeItemListEnd
+    \resumeSubheading
+      {James Madison University}{Harrisonburg, VA}
+      {Bachelor of Science in Computer Science -- Minors: Robotics, Data Analytics}{Graduated: Dec 2025}
+      \resumeItemListStart
+        \resumeItem{\textbf{GPA:} 3.39 ~|~ \textbf{Coursework:} Data Structures \& Algorithms, Artificial Intelligence, Autonomous Robotics, Machine Learning, Software Engineering}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-------------------- PROJECTS --------------------
+\section{AI/ML \& Robotics Projects}
+\resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {Agentic AI System --ReAct Architecture}{Python, PyTorch, Hugging Face Transformers, Local LLM Inference}
+      \resumeItemListStart
+        \resumeItem{Built an end-to-end \textbf{agentic AI system} implementing the \textbf{ReAct (Reasoning, Acting, Observing) pattern} (Yao et al., 2022) for iterative code debugging -- engineered thought generation, structured action parsing, environment observation, and history-aware prompting enabling self-correction across iterations.}
+        \resumeItem{Integrated and benchmarked four small LLMs locally (\textbf{Gemma-2 2B, Qwen-2.5 3B, Llama-3.2 3B, SmolLM 360M}) via Hugging Face Transformers, analyzing trade-offs between model size, latency, and agentic success rate.}
+        \resumeItem{Evaluated on the \textbf{QuixBugs} benchmark with pass@K metrics plus adversarial and property-based oracle tests, demonstrating iterative ReAct loops materially outperform single-shot prompting without increasing model size.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {Music Recommender -- k-NN on Spotify Dataset}{Python, NumPy, Pandas, Scikit-learn, YouTube Data API}
+      \resumeItemListStart
+        \resumeItem{Implemented \textbf{k-Nearest Neighbors from scratch} over a 339,801-track Spotify audio-features dataset, with a feature pipeline performing outlier detection, \textbf{log-transformation} of right-skewed features, and \textbf{Yeo-Johnson normalization} to materially improve distance-based similarity quality.}
+        \resumeItem{Compared multiple \textbf{distance metrics} (Euclidean, Cosine, Manhattan) and integrated the model into a \textbf{web application} via a Python adapter layer with \textbf{YouTube Data API} audio previews.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {Patient Finder -- Autonomous Navigation System}{Python, ROS2, LiDAR, TurtleBot}
+      \resumeItemListStart
+        \resumeItem{Developed a \textbf{TurtleBot autonomous navigation stack} that locates patients tagged with \textbf{ArUco fiducial markers} in a simulated environment, and used \textbf{LiDAR} range data with a monocular \textbf{camera} stream for obstacle avoidance and visual target localization, orchestrated by a \textbf{finite-state ROS2 controller} coordinating exploration, acquisition, approach, and photograph.}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-------------------- LEADERSHIP --------------------
+\section{Leadership \& Additional Experience}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Men's Club Volleyball}{Virginia Tech \& James Madison University}
+      {Player, JMU President (2024--2025), JMU Treasurer (2023--2024)}{2022 -- Present}
+      \resumeItemListStart
+        \resumeItem{\textbf{Virginia Tech (Player):} Contributed to a top-5 national finish at the NCVF Championships.}
+        \resumeItem{\textbf{JMU President / Treasurer:} Led a 30+ member organization; ran practices, managed competition logistics and travel, oversaw budget, coordinated fiscal compliance with the university, and managed the executive board.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Service \& Hospitality Roles}{Texas Roadhouse, Jimmy John's, Lifeguard}
+      {Server, Sandwich Maker, Lifeguard}{2019 -- 2023}
+      \resumeItemListStart
+        \resumeItem{Developed strong \textbf{communication, time-management, and team-coordination} skills across fast-paced, high-volume environments while funding education.}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\end{document}
