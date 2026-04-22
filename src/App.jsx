@@ -1,9 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import Chatbot from "./components/Chatbot";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import NeuralNetworkBackground from "./components/NeuralNetworkBackground";
-import FlashlightNetwork from "./components/FlashlightNetwork";
+import EmbeddingField from "./components/EmbeddingField";
 import Contact from "./components/Contact";
 import AsciiName from "./components/AsciiName";
 import About from "./components/About";
@@ -16,7 +15,7 @@ function App() {
   // Fade out both background and home content over the first 400px of vertical scroll
   const fadeOutOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   
-  // Fade IN the interactive flashlight network as the home section fades out
+  // Fade IN the embedding field as the home section fades out
   const fadeInOpacity = useTransform(scrollY, [300, 500], [0, 1]);
 
   const containerVariants = {
@@ -71,7 +70,8 @@ function App() {
         <NeuralNetworkBackground />
       </motion.div>
 
-      {/* Flashlight Neural Network for the rest of the site */}
+      {/* Embedding field — live k-NN classifier under the cursor for
+          the rest of the site; fades in as the hero fades out. */}
       <motion.div 
         style={{ 
           position: 'fixed', 
@@ -81,7 +81,7 @@ function App() {
           opacity: fadeInOpacity 
         }}
       >
-        <FlashlightNetwork />
+        <EmbeddingField />
       </motion.div>
 
       <motion.nav 
@@ -94,7 +94,6 @@ function App() {
         <a className="nav-link" onClick={() => scrollToSection('about')}>About</a>
         <a className="nav-link" onClick={() => scrollToSection('projects')}>Projects</a>
         <a className="nav-link" onClick={() => scrollToSection('skills')}>Skills</a>
-        <a className="nav-link" onClick={() => scrollToSection('ai-chat')}>Ask AI</a>
         <a className="nav-link" onClick={() => scrollToSection('contact')}>Contact</a>
       </motion.nav>
 
@@ -163,18 +162,6 @@ function App() {
           viewport={{ once: false, amount: 0.2 }}
         >
           <Skills />
-        </motion.section>
-
-        {/* Chatbot Section */}
-        <motion.section 
-          id="ai-chat"
-          className="page-section"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <Chatbot />
         </motion.section>
 
         {/* Contact Section */}

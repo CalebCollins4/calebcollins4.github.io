@@ -32,7 +32,7 @@ const ProfileBadge = () => {
               <a href="mailto:caleb.coll4@gmail.com" className="contact-badge-link">Email: caleb.coll4@gmail.com</a>
               <a href="https://linkedin.com/in/caleb-collins-5b85572b2" target="_blank" rel="noreferrer" className="contact-badge-link">LinkedIn Profile</a>
               <a href="https://github.com/calebcollins4" target="_blank" rel="noreferrer" className="contact-badge-link">GitHub Profile</a>
-              <a href="/Caleb_Collins_Resume_Brief.pdf" target="_blank" rel="noreferrer" className="contact-badge-link" style={{ marginTop: '0.25rem', color: '#ffffff', fontWeight: 600 }}>View Resume</a>
+              <a href="/Caleb_Collins_Resume_For_Website.pdf" target="_blank" rel="noreferrer" className="contact-badge-link" style={{ marginTop: '0.25rem', color: '#ffffff', fontWeight: 600 }}>View Resume</a>
             </div>
           </motion.div>
         )}

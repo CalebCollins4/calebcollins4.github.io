@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Github, Lock, CheckCircle2, ArrowUpRight, GraduationCap } from 'lucide-react';
+import { X, Lock, CheckCircle2, ArrowUpRight, GraduationCap } from 'lucide-react';
+import { GithubIcon } from './BrandIcons';
 import { SKILLS_DATA, defaultSkill } from '../data/skills';
 
 const backdropVariants = {
@@ -170,7 +171,7 @@ const ProjectModal = ({ project, onClose }) => {
                     color: '#ffffff',
                   }}
                 >
-                  <Github size={16} />
+                  <GithubIcon size={16} />
                   <span>View on GitHub</span>
                   <ArrowUpRight size={14} />
                 </a>

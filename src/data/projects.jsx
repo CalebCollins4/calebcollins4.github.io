@@ -6,60 +6,58 @@
 
 export const PROJECTS = [
   {
-    id: 'react-agent',
-    title: 'Agentic AI System',
-    subtitle: 'ReAct Architecture for Iterative Code Debugging',
-    category: 'AI / LLM Agents',
+    id: 'thought-cascade',
+    title: 'Thought Cascade',
+    subtitle: 'Iterative Code-Repair Agent',
+    category: 'Machine Learning / Developer Tools',
     tagline:
-      'Reasoning + Acting + Observing loops that let small local LLMs self-correct their way past single-shot prompting.',
+      'A command-line agent that repairs broken Python functions by reasoning about failing tests, proposing a fix, running it, and iterating until the suite passes.',
     description:
-      'An end-to-end agentic AI system implementing the ReAct (Reasoning, Acting, Observing) pattern from Yao et al. (2022) for iterative code debugging. The agent generates thoughts, parses structured actions, observes the environment, and carries a history-aware prompt across iterations — enabling genuine self-correction rather than one-shot guesses.',
+      'A pluggable code-repair tool that wraps a language model in a reason-act-observe loop. Each iteration generates a plan, turns it into a structured candidate fix, runs the fix against the test suite in a sandboxed executor, and feeds the concrete failure (compilation error, first failing input vs. expected output, or pass rate) back into the next attempt. It ships with two interchangeable model backends: a hosted OpenAI-compatible fast path for production, and a HuggingFace Transformers path for on-device or air-gapped runs. A built-in QuixBugs benchmark harness quantifies the lift over single-shot prompting.',
     highlights: [
-      'Engineered the full ReAct loop: thought generation, structured action parsing, environment observation, and history-aware prompting across iterations.',
-      'Integrated and benchmarked four small LLMs locally — Gemma-2 2B, Qwen-2.5 3B, Llama-3.2 3B, and SmolLM 360M — via Hugging Face Transformers, analyzing trade-offs between model size, latency, and agentic success rate.',
-      'Evaluated on the QuixBugs benchmark with pass@K metrics plus adversarial and property-based oracle tests, demonstrating iterative ReAct loops materially outperform single-shot prompting without scaling the underlying model.',
-      'Showed that inference-time reasoning structure is a cheaper lever than raw parameter count for debugging-style tasks.',
+      'Built a sandboxed execution harness that surfaces rich feedback (compile errors, first failing input, aggregate pass rate) so each iteration has something concrete to learn from.',
+      'Ships with two drop-in model backends: a hosted OpenAI-compatible endpoint for production latency and a local HuggingFace path for offline deployment, selected with a single env var.',
+      'Tolerant output parser salvages malformed JSON and bare code from lossy small-model responses so the loop keeps making progress when format instructions are ignored.',
+      'Built-in benchmark command runs the agent and a single-shot baseline across QuixBugs and reports pass@1 and average pass rate side-by-side.',
     ],
     metrics: [
-      { value: '4', label: 'Local LLMs benchmarked' },
-      { value: 'QuixBugs', label: 'Evaluation suite' },
-      { value: 'ReAct', label: 'Reasoning pattern' },
+      { value: '2', label: 'Pluggable backends' },
+      { value: 'QuixBugs', label: 'Benchmark harness' },
+      { value: 'CLI + API', label: 'Ways to run it' },
     ],
     technologies: [
       'Python',
       'PyTorch',
       'Hugging Face',
       'LLM Agents',
-      'Agentic AI (ReAct)',
       'Transformers',
       'Local LLM Inference',
+      'Test-Driven Development',
     ],
     links: {
-      github:
-        'https://github.com/CalebCollins4/VirginiaTech/tree/main/ECE5424%20-%20Advanced%20Machine%20Learning/Project%203%20Thought%20Cascade',
+      github: 'https://github.com/CalebCollins4/thought-cascade',
     },
     accent: '#EE4C2C',
-    course: 'Virginia Tech — ECE 5424 Advanced Machine Learning',
   },
   {
-    id: 'knn-music',
+    id: 'music-recommender',
     title: 'Music Recommender',
-    subtitle: 'k-Nearest Neighbors on a 339,801-track Spotify Dataset',
-    category: 'ML / Recommender Systems',
+    subtitle: 'Audio-Feature Similarity Engine for 340k+ Tracks',
+    category: 'Machine Learning / Recommender Systems',
     tagline:
-      'Hand-built k-NN over audio features with principled feature scaling, paired with a web app and YouTube previews.',
+      'A Flask service that returns songs similar to a seed track, or to a custom sound profile, over a 340,000-track Spotify-derived catalog.',
     description:
-      'A from-scratch k-Nearest Neighbors recommender trained on a 339,801-track Spotify audio-features dataset. The feature pipeline performs outlier detection, log-transformation of right-skewed features, and Yeo-Johnson normalization to materially improve distance-based similarity quality. The model is exposed through a Python adapter layer to a web application with YouTube Data API previews, closing the loop from raw audio features to a listen-and-discover UX.',
+      'A music-discovery service built around a k-Nearest Neighbors similarity engine over Spotify-style audio features (energy, danceability, valence, tempo, and friends). Users search a 340,000-track catalog, pick a seed song or build a sound profile from sliders, and get neighbors ranked by cosine, Euclidean, or Manhattan distance. It ships with two interchangeable recommender backends: a from-scratch reference implementation, and a vectorized sklearn / NumPy production path. The frontend is a single-page web client with iTunes album art and YouTube audio previews.',
     highlights: [
-      'Implemented k-Nearest Neighbors from scratch over 339,801 Spotify tracks — no black-box sklearn model for the core similarity step.',
-      'Built a feature pipeline with outlier detection, log-transformation of right-skewed features, and Yeo-Johnson normalization for distance-quality gains.',
-      'Compared Euclidean, Cosine, and Manhattan distance metrics to understand trade-offs in taste-similarity geometry.',
-      'Integrated the model into a web app via a Python adapter layer with YouTube Data API audio previews.',
+      'Two interchangeable k-NN backends behind the same interface: a from-scratch reference implementation and a vectorized sklearn / NumPy production path that serves a 340k-track catalog in single-digit milliseconds per query.',
+      'Supports three distance metrics (cosine, Euclidean, Manhattan) and lets users restrict similarity to any subset of audio features on the fly.',
+      'Feature pipeline handles outlier detection, median imputation, and standard scaling so large-scale features like tempo do not dominate distance computations.',
+      'Single-page client with live search, iTunes album-art lookup, and YouTube audio previews via yt-dlp, all wired to a small Flask REST API.',
     ],
     metrics: [
-      { value: '339,801', label: 'Tracks in dataset' },
-      { value: '3', label: 'Distance metrics compared' },
-      { value: 'Yeo-Johnson', label: 'Normalization applied' },
+      { value: '340k+', label: 'Tracks served' },
+      { value: '3', label: 'Distance metrics' },
+      { value: '~100x', label: 'Fast vs. scratch speedup' },
     ],
     technologies: [
       'Python',
@@ -69,15 +67,12 @@ export const PROJECTS = [
       'k-NN & Recommenders',
       'Feature Engineering',
       'Feature Scaling',
-      'Outlier Detection',
       'RESTful APIs',
     ],
     links: {
-      github:
-        'https://github.com/CalebCollins4/VirginiaTech/tree/main/ECE5424%20-%20Advanced%20Machine%20Learning/Project%201%20KNN%20Music%20Recommender',
+      github: 'https://github.com/CalebCollins4/music-recommender',
     },
     accent: '#1DB954',
-    course: 'Virginia Tech — ECE 5424 Advanced Machine Learning',
   },
   {
     id: 'patient-finder',
@@ -87,7 +82,7 @@ export const PROJECTS = [
     tagline:
       'A ROS2 finite-state controller that explores a simulated environment, locates ArUco-tagged patients, and photographs them.',
     description:
-      'A TurtleBot autonomous navigation stack that locates patients tagged with ArUco fiducial markers in a simulated environment. LiDAR range data and a monocular camera stream feed into obstacle avoidance and visual target localization, all coordinated by a finite-state ROS2 controller that steps through exploration, target acquisition, approach, and photograph phases. Built as a group project — repository is private.',
+      'A TurtleBot autonomous navigation stack that locates patients tagged with ArUco fiducial markers in a simulated environment. LiDAR range data and a monocular camera stream feed into obstacle avoidance and visual target localization, all coordinated by a finite-state ROS2 controller that steps through exploration, target acquisition, approach, and photograph phases. Built as a group project; the repository is private.',
     highlights: [
       'TurtleBot stack locating patients tagged with ArUco fiducial markers in a simulated environment.',
       'Fused LiDAR range data with a monocular camera stream for obstacle avoidance and visual target localization.',
@@ -110,9 +105,9 @@ export const PROJECTS = [
     ],
     links: {
       private: true,
-      privateNote: 'Group class project — repository is private.',
+      privateNote: 'Group class project. Repository is private.',
     },
     accent: '#22314E',
-    course: 'James Madison University — Autonomous Robotics',
+    course: 'James Madison University, Autonomous Robotics',
   },
 ];

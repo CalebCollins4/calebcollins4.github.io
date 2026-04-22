@@ -6,7 +6,8 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion';
-import { FolderGit2, ArrowUpRight, Lock, Github } from 'lucide-react';
+import { FolderGit2, ArrowUpRight, Lock } from 'lucide-react';
+import { GithubIcon } from './BrandIcons';
 import { SKILLS_DATA, defaultSkill } from '../data/skills';
 import { PROJECTS } from '../data/projects';
 import ProjectModal from './ProjectModal';
@@ -106,7 +107,7 @@ const ProjectCard = ({ project, onOpen }) => {
             onClick={(e) => e.stopPropagation()}
             aria-label={`Open ${project.title} GitHub repository`}
           >
-            <Github size={18} />
+            <GithubIcon size={18} />
           </a>
         )}
         {isPrivate && (
@@ -182,7 +183,7 @@ const Projects = () => {
         <h2 className="section-title">Featured Projects</h2>
         <div className="title-underline"></div>
         <p className="section-subtitle">
-          End-to-end work in agentic AI, recommender systems, and autonomous robotics. Click a card for the full build.
+          End-to-end work spanning developer tools, recommender systems, and autonomous robotics. Click a card for the full build.
         </p>
       </motion.div>
 

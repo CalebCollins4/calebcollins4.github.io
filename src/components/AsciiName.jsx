@@ -19,7 +19,12 @@ const textMask = [
   "  ███████   ██████   ████████  ████████  ███   ██    ███   ███████ "
 ];
 
-const chars = "10";
+// hex
+const chars = "0123456789abcdef"
+// binary
+// const chars = "01"
+
+const update_ms = 100
 
 const InteractiveChar = ({ isSpace }) => {
   const [char, setChar] = useState('');
@@ -34,10 +39,10 @@ const InteractiveChar = ({ isSpace }) => {
     // Random glitch effect occasionally
     const interval = setInterval(() => {
       // 3% chance to change character every 100ms
-      if (Math.random() > 0.5) {
+      if (Math.random() > 0.9) {
         setChar(chars[Math.floor(Math.random() * chars.length)]);
       }
-    }, 100);
+    }, update_ms);
 
     return () => clearInterval(interval);
   }, [isSpace]);
@@ -54,9 +59,11 @@ const InteractiveChar = ({ isSpace }) => {
       }}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
-        color: isHovered ? '#ffffff' : '#777777',
+        color: isHovered ? '#ffffff' : '#b0b0b0',
         scale: isHovered ? 1.4 : 1,
-        textShadow: isHovered ? '0px 0px 10px rgba(255,255,255,0.9)' : 'none',
+        textShadow: isHovered
+          ? '0px 0px 10px rgba(255,255,255,0.9)'
+          : '0 0 8px rgba(0,0,0,0.75), 0 0 2px rgba(0,0,0,0.9)',
         zIndex: isHovered ? 10 : 1,
       }}
       transition={{ type: 'spring', stiffness: 400, damping: 12 }}

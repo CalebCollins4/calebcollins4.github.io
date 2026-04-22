@@ -1,16 +1,59 @@
-# React + Vite
+# calebcollins4.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for Caleb Collins — built with React + Vite and deployed to GitHub Pages.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```powershell
+npm install
+npm run dev
+```
 
-## React Compiler
+Open http://localhost:5173 to preview. The dev server has hot reload.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Other scripts:
 
-## Expanding the ESLint configuration
+- `npm run build` — Production build into `dist/`
+- `npm run preview` — Serves the production build locally on port 4173
+- `npm run lint` — Runs ESLint
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deployment
+
+This repo is the GitHub user site for [CalebCollins4](https://github.com/CalebCollins4), so it ships to `https://calebcollins4.github.io/`.
+
+Every push to `main` triggers `.github/workflows/deploy.yml`, which:
+
+1. Installs dependencies with `npm install`
+2. Builds the site with `vite build` (output goes to `dist/`)
+3. Uploads `dist/` as a Pages artifact
+4. Publishes to GitHub Pages via `actions/deploy-pages`
+
+### One-time GitHub setup
+
+In **Settings -> Pages**, set **Source** to **GitHub Actions**. No further configuration is needed — the workflow handles artifact upload and publishing.
+
+### Manual deploy
+
+From the **Actions** tab you can also run the workflow manually via `workflow_dispatch`.
+
+## Project structure
+
+```
+.
+|-- .github/workflows/deploy.yml   # CI/CD to GitHub Pages
+|-- public/                        # Static assets served at the site root
+|   |-- Caleb_Collins_Resume_Brief.pdf
+|   |-- favicon.svg
+|   +-- icons.svg
+|-- resume/                        # LaTeX source for the resume (not shipped)
+|-- src/
+|   |-- App.jsx                    # Top-level layout and section scaffolding
+|   |-- App.css                    # Global + section styling
+|   |-- index.css                  # Typography, colors, reset
+|   |-- components/                # UI components
+|   |-- data/                      # Project + skill content (source of truth)
+|   +-- assets/                    # Logos and the headshot
+|-- index.html
+|-- vite.config.js
++-- package.json
+```
