@@ -122,7 +122,7 @@ function App() {
           <AsciiName variants={itemVariants} />
           
           <motion.h2 className="role-subtitle" variants={itemVariants}>
-            Computer Engineer
+            Software Engineer
           </motion.h2>
         </motion.section>
       </div>
