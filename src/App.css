@@ -28,8 +28,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(1000px, 82vw);
-  height: min(520px, 58vh);
+  width: min(1200px, 94vw);
+  height: min(640px, 70vh);
   background: radial-gradient(
     ellipse at center,
     rgba(0, 0, 0, 0.62) 0%,
@@ -66,14 +66,23 @@
 
 .name-title-ascii {
   font-family: monospace;
-  font-size: clamp(0.5rem, 1.2vw, 1.5rem);
-  line-height: 1.2;
+  /* 29x130 mask: scale so the wider art fits 1280 and ~390 viewports without wrapping. */
+  font-size: clamp(0.28rem, 1.02vw, 0.92rem);
+  line-height: 1.05;
   white-space: pre;
   text-align: left;
   color: #eeeeee;
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
   margin-bottom: 2rem;
   z-index: 1;
+  max-width: 100%;
+}
+
+.ascii-line {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  justify-content: center;
 }
 
 .about-text-container {
