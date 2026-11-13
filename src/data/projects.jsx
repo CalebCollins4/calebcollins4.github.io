@@ -101,7 +101,6 @@ export const PROJECTS = [
       'ArUco Marker Detection',
       'Computer Vision',
       'Autonomous Navigation',
-      'Kinematics',
     ],
     links: {
       private: true,
@@ -111,3 +110,5 @@ export const PROJECTS = [
     course: 'James Madison University, Autonomous Robotics',
   },
 ];
+
+

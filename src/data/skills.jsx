@@ -12,7 +12,6 @@ import {
   GitBranch,
   Workflow,
   LineChart,
-  BarChart3,
   Radar,
   Radio,
   FlaskConical,
@@ -22,7 +21,6 @@ import {
   Hash,
   Sparkles,
   Target,
-  Shuffle,
   TrendingUp,
   Search,
   Filter,
@@ -30,12 +28,12 @@ import {
   CheckCheck,
   GitPullRequest,
   Rocket,
-  Wrench,
   Notebook,
   Cloud,
   MonitorPlay,
   FolderTree,
   Car,
+  Container,
 } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
@@ -100,27 +98,34 @@ export const SKILLS_DATA = {
   Java: { name: 'Java', icon: <Code />, color: '#F89820' },
   SQL: { name: 'SQL', icon: <Database />, color: '#00758F' },
   R: { name: 'R', icon: <LineChart />, color: '#276DC3' },
+  JavaScript: { name: 'JavaScript', icon: <Code />, color: '#F7DF1E' },
+  React: { name: 'React', icon: <Code />, color: '#61DAFB' },
 
   // Machine Learning & Deep Learning
   PyTorch: { name: 'PyTorch', icon: <PyTorchLogo />, color: '#EE4C2C' },
   TensorFlow: { name: 'TensorFlow', icon: <Layers />, color: '#FF6F00' },
-  Keras: { name: 'Keras', icon: <Layers />, color: '#D00000' },
   'Scikit-learn': { name: 'Scikit-learn', icon: <FlaskConical />, color: '#F7931E' },
   'Hugging Face': { name: 'Hugging Face', icon: <HuggingFaceLogo />, color: '#FFD21E' },
-  XGBoost: { name: 'XGBoost', icon: <BarChart3 />, color: '#00A98F' },
+  OpenCV: { name: 'OpenCV', icon: <Eye />, color: '#5C3EE8' },
+  YOLO: { name: 'YOLO', icon: <Target />, color: '#00BFBF' },
+  DINOv3: { name: 'DINOv3', icon: <Sparkles />, color: '#8B5CF6' },
+  ResNet: { name: 'ResNet', icon: <Layers />, color: '#0EA5E9' },
+  Anomalib: { name: 'Anomalib', icon: <Filter />, color: '#F59E0B' },
+  PatchCore: { name: 'PatchCore', icon: <Search />, color: '#D97706' },
 
   // AI Specializations
   'Deep Learning': { name: 'Deep Learning', icon: <BrainCircuit />, color: '#8B5CF6' },
   'Reinforcement Learning': { name: 'Reinforcement Learning', icon: <Target />, color: '#F43F5E' },
   'Computer Vision': { name: 'Computer Vision', icon: <Eye />, color: '#10B981' },
+  'Anomaly Detection': { name: 'Anomaly Detection', icon: <Filter />, color: '#F59E0B' },
+  RAG: { name: 'RAG', icon: <Search />, color: '#06B6D4' },
   NLP: { name: 'NLP', icon: <MessageSquare />, color: '#06B6D4' },
-  'LLM Agents': { name: 'LLM Agents', icon: <Bot />, color: '#FFD21E' },
+  'LLM Agents': { name: 'LLM Agents & Tool Calling', icon: <Bot />, color: '#FFD21E' },
   'Agentic AI (ReAct)': { name: 'Agentic AI (ReAct)', icon: <Workflow />, color: '#F97316' },
   Transformers: { name: 'Transformers', icon: <Sparkles />, color: '#A855F7' },
   'RNN/LSTM': { name: 'RNN/LSTM', icon: <Network />, color: '#3B82F6' },
   CNN: { name: 'CNN', icon: <Layers />, color: '#EC4899' },
-  'Ensemble Methods': { name: 'Ensemble Methods', icon: <Shuffle />, color: '#14B8A6' },
-  'k-NN & Recommenders': { name: 'k-NN & Recommenders', icon: <Radar />, color: '#1DB954' },
+  'k-NN & Recommenders': { name: 'k-NN & Recommender Systems', icon: <Radar />, color: '#1DB954' },
 
   // Data Engineering & Analysis
   Pandas: { name: 'Pandas', icon: <Database />, color: '#150458' },
@@ -132,39 +137,38 @@ export const SKILLS_DATA = {
   'Hyperparameter Tuning': { name: 'Hyperparameter Tuning', icon: <SlidersHorizontal />, color: '#EAB308' },
   'ETL Pipelines': { name: 'ETL Pipelines', icon: <Workflow />, color: '#6366F1' },
   Matplotlib: { name: 'Matplotlib', icon: <LineChart />, color: '#11557C' },
-  Seaborn: { name: 'Seaborn', icon: <BarChart3 />, color: '#4C7FBE' },
 
   // Software Engineering
   'Git/GitHub': { name: 'Git/GitHub', icon: <GitBranch />, color: '#F05032' },
+  'Azure DevOps': { name: 'Azure DevOps', icon: <GitPullRequest />, color: '#0078D7' },
+  'CI/CD': { name: 'CI/CD Pipelines', icon: <Rocket />, color: '#2088FF' },
+  'Microsoft Azure': { name: 'Microsoft Azure', icon: <Cloud />, color: '#0078D7' },
   'RESTful APIs': { name: 'RESTful APIs', icon: <Globe />, color: '#3B82F6' },
   'Agile/Scrum': { name: 'Agile/Scrum', icon: <GitPullRequest />, color: '#0052CC' },
+  'Object-Oriented Design': { name: 'Object-Oriented Design', icon: <Box />, color: '#64748B' },
   'Test-Driven Development': { name: 'Test-Driven Development', icon: <CheckCheck />, color: '#22C55E' },
-  'CI/CD': { name: 'CI/CD', icon: <Rocket />, color: '#2088FF' },
+  Docker: { name: 'Docker', icon: <Container />, color: '#2496ED' },
 
   // Robotics & Embedded
+  'Industrial Camera Systems': { name: 'Industrial Camera Systems', icon: <MonitorPlay />, color: '#6366F1' },
   ROS2: { name: 'ROS2', icon: <Cpu />, color: '#22314E' },
   LiDAR: { name: 'LiDAR', icon: <Radio />, color: '#00B4D8' },
   'ArUco Marker Detection': { name: 'ArUco Markers', icon: <Search />, color: '#F97316' },
-  Kinematics: { name: 'Kinematics', icon: <Wrench />, color: '#64748B' },
   'Autonomous Navigation': { name: 'Autonomous Navigation', icon: <Car />, color: '#10B981' },
 
   // Tools & Environments
   Jupyter: { name: 'Jupyter', icon: <Notebook />, color: '#F37626' },
   'Google Colab': { name: 'Google Colab', icon: <Cloud />, color: '#F9AB00' },
   'VS Code': { name: 'VS Code', icon: <MonitorPlay />, color: '#007ACC' },
+  Linux: { name: 'Linux', icon: <Terminal />, color: '#FCC624' },
   Anaconda: { name: 'Anaconda', icon: <FolderTree />, color: '#44A833' },
+  'Microsoft Teams': { name: 'Microsoft Teams', icon: <MessageSquare />, color: '#6264A7' },
   'Local LLM Inference': { name: 'Local LLM Inference', icon: <Terminal />, color: '#A855F7' },
-
-  // Back-compat aliases (used by legacy placeholders / older badges)
-  'AI/ML': { name: 'AI/ML', icon: <BrainCircuit />, color: '#FF6F00' },
-  'C++': { name: 'C++', icon: <Code />, color: '#00599C' },
-  Microcontrollers: { name: 'Microcontrollers', icon: <Cpu />, color: '#4CAF50' },
-  Hardware: { name: 'Hardware', icon: <Box />, color: '#795548' },
 };
 
 // ---------------------------------------------------------------------------
 // Category groupings — mirrors the resume's Technical Skills section.
-// Skills.jsx renders one row per category.
+// Skills.jsx renders one row per category. Docker is site-only (not on the resume).
 // ---------------------------------------------------------------------------
 
 export const SKILL_CATEGORIES = [
@@ -172,13 +176,24 @@ export const SKILL_CATEGORIES = [
     id: 'languages',
     label: 'Programming Languages',
     accent: '#4B8BBE',
-    items: ['Python', 'C', 'Java', 'SQL', 'R'],
+    items: ['Python', 'C', 'Java', 'SQL', 'R', 'JavaScript', 'React'],
   },
   {
     id: 'ml',
     label: 'Machine Learning & Deep Learning',
     accent: '#EE4C2C',
-    items: ['PyTorch', 'TensorFlow', 'Keras', 'Scikit-learn', 'Hugging Face', 'XGBoost'],
+    items: [
+      'PyTorch',
+      'TensorFlow',
+      'Scikit-learn',
+      'Hugging Face',
+      'OpenCV',
+      'YOLO',
+      'DINOv3',
+      'ResNet',
+      'Anomalib',
+      'PatchCore',
+    ],
   },
   {
     id: 'ai',
@@ -186,15 +201,16 @@ export const SKILL_CATEGORIES = [
     accent: '#A855F7',
     items: [
       'Deep Learning',
-      'Reinforcement Learning',
       'Computer Vision',
+      'Anomaly Detection',
+      'RAG',
+      'Reinforcement Learning',
       'NLP',
       'LLM Agents',
       'Agentic AI (ReAct)',
       'Transformers',
       'RNN/LSTM',
       'CNN',
-      'Ensemble Methods',
       'k-NN & Recommenders',
     ],
   },
@@ -212,25 +228,49 @@ export const SKILL_CATEGORIES = [
       'Hyperparameter Tuning',
       'ETL Pipelines',
       'Matplotlib',
-      'Seaborn',
     ],
   },
   {
     id: 'software',
     label: 'Software Engineering',
     accent: '#22C55E',
-    items: ['Git/GitHub', 'RESTful APIs', 'Agile/Scrum', 'Test-Driven Development', 'CI/CD'],
+    items: [
+      'Git/GitHub',
+      'Azure DevOps',
+      'CI/CD',
+      'Microsoft Azure',
+      'RESTful APIs',
+      'Agile/Scrum',
+      'Object-Oriented Design',
+      'Test-Driven Development',
+      'Docker',
+    ],
   },
   {
     id: 'robotics',
     label: 'Robotics & Embedded',
     accent: '#10B981',
-    items: ['ROS2', 'LiDAR', 'ArUco Marker Detection', 'Kinematics', 'Autonomous Navigation'],
+    items: [
+      'Industrial Camera Systems',
+      'ROS2',
+      'LiDAR',
+      'ArUco Marker Detection',
+      'Autonomous Navigation',
+    ],
   },
   {
     id: 'tools',
     label: 'Tools & Environments',
     accent: '#F37626',
-    items: ['Jupyter', 'Google Colab', 'VS Code', 'Anaconda', 'Local LLM Inference'],
+    items: [
+      'Jupyter',
+      'Google Colab',
+      'VS Code',
+      'Linux',
+      'Anaconda',
+      'Microsoft Teams',
+      'Local LLM Inference',
+    ],
   },
 ];
+

@@ -1,15 +1,11 @@
 %-------------------------------------------------------------------
 % Caleb Collins - AI/ML Software Engineer Resume (WEBSITE variant)
-% Publicly-shareable version: omits phone number and ZIP so the PDF
+% Publicly-shareable version: omits phone number so the PDF
 % can be hosted on the portfolio site without exposing direct PII.
 % ATS-optimized: single column, standard fonts, no graphics/tables.
-% Compile with: pdflatex Caleb_Collins_Resume_For_Website.tex
-%
-% Compressed from the full resume to fit on one page via:
-%   - 10pt body font (vs 11pt)
-%   - 0.5in margins on all sides (geometry)
-%   - Condensed bullets (1-3 per project, 2 for leadership)
-%   - Uniform 4pt breathing room between headings and first bullet
+% Compile with: tectonic Caleb_Collins_Resume_For_Website.tex
+%               (or pdflatex Caleb_Collins_Resume_For_Website.tex)
+% Content matches the Nov 2026 resume, without the phone number.
 %-------------------------------------------------------------------
 \documentclass[letterpaper,10pt]{article}
 
@@ -21,8 +17,7 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 
-% Page margins - 0.5in on all sides (tight but professional)
-\usepackage[left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
+\usepackage[left=0.6in, right=0.6in, top=0.55in, bottom=0.55in]{geometry}
 
 \urlstyle{same}
 \raggedbottom
@@ -30,68 +25,74 @@
 \setlength{\tabcolsep}{0in}
 \pagestyle{empty}
 
-% Section formatting - reduced spacing
 \titleformat{\section}{
   \vspace{-10pt}\scshape\raggedright\large\bfseries
 }{}{0em}{}[\color{black}\titlerule\vspace{-2pt}]
 
-%-------------------------------------------------------------------
-% Custom commands
-%-------------------------------------------------------------------
 \newcommand{\resumeItem}[1]{\item\small{#1}}
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{1pt}\item
-    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\textwidth}[t]{@{}l@{\extracolsep{\fill}}r@{}}
       \textbf{#1} & #2 \\
-      \textit{\small #3} & \textit{\small #4} \\
+      \textit{\small #3} & \textit{\small\mbox{#4}} \\
     \end{tabular*}\vspace{-2pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \vspace{1.5pt}\item
-      \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \begin{tabular*}{\textwidth}[t]{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{#1} & \textit{\small #2} \\
       \end{tabular*}\vspace{-2pt}
 }
 
 \renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
-% leftmargin=0pt keeps subheadings flush-left with section titles so tabulars
-% can use the full \textwidth without overhanging the right page margin.
-% itemsep=0pt is neutral; tightness is achieved via the \vspace adjustments
-% inside \resumeSubheading, \resumeProjectHeading, and \resumeItemListEnd.
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt, parsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-% topsep=4pt gives consistent breathing room between any heading and the first bullet.
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.18in, itemsep=0pt, parsep=0pt, topsep=4pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
 
-%-------------------------------------------------------------------
 \begin{document}
 
 %-------------------- HEADER --------------------
 \begin{center}
     {\LARGE \scshape Caleb Collins} \\ \vspace{2pt}
-    \small Midlothian, VA ~|~
+    \small Blacksburg, VA ~|~
     \href{mailto:caleb.coll4@gmail.com}{caleb.coll4@gmail.com} \\
     \small \textit{LinkedIn:} \href{https://www.linkedin.com/in/caleb-collins-5b85572b2}{linkedin.com/in/caleb-collins-5b85572b2} ~|~ \textit{GitHub:} \href{https://github.com/CalebCollins4}{github.com/CalebCollins4}
 \end{center}
 
 %-------------------- SUMMARY --------------------
 \section{Professional Summary}
-\small Computer Engineering graduate student at Virginia Tech (Software \& Machine Intelligence) with end-to-end ML experience in \textbf{PyTorch, Hugging Face Transformers, and scikit-learn}. Project work spans \textbf{agentic LLM systems (ReAct)}, knn song recommender, computer vision, and autonomous robotics. Seeking an \textbf{AI/ML Software Engineer} role to ship production-grade intelligent systems.
+\small Machine Learning Engineer Intern at Volvo Group and Computer Engineering graduate student at Virginia Tech specializing in Software and Machine Intelligence. Build computer vision systems for quality control in truck manufacturing, running multiple concurrent projects from camera installation and data collection through model testing and production deployment, and won 1st place in a company hackathon with a Retrieval-Augmented Generation (RAG) system. Skilled in Python, PyTorch, OpenCV, and YOLO, with project experience spanning agentic LLM systems (ReAct), recommender systems over 300K+ item catalogs, and autonomous robotics.
+
+%-------------------- EXPERIENCE --------------------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Volvo Group}{Dublin, VA}
+      {Machine Learning Engineer Intern (Summer \& Fall 2026)}{May 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Develop computer vision systems for quality control of trucks and the truck manufacturing process, applying object detection, deep vision backbones, and anomaly detection models (YOLO, DINOv3, ResNet, Anomalib/PatchCore) to automate visual inspection across several production applications.}
+        \resumeItem{Run multiple concurrent ML projects end-to-end, from scoping requirements with stakeholders through image data collection, model training, and evaluation; several models are deployed in production while others are in testing on the line.}
+        \resumeItem{Partnered with plant maintenance teams to plan and install industrial cameras on the production line, building the image-capture infrastructure that feeds the inspection models.}
+        \resumeItem{Won \textbf{1st place} in a company-wide hackathon by building a \textbf{Retrieval-Augmented Generation (RAG)} system that pairs large language models with document retrieval.}
+        \resumeItem{Packaged the team's ML code as PyPI-style Python packages published through Azure DevOps, making shared components reusable across projects, and used its version control and CI/CD pipelines to build, test, and ship applications.}
+        \resumeItem{Collaborated cross-functionally with engineering, quality, and production teams, coordinating project work and status through Microsoft Teams.}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
 
 %-------------------- TECHNICAL SKILLS --------------------
 \section{Technical Skills}
 \small
 \begin{itemize}[leftmargin=0.15in, itemsep=0pt, parsep=0pt, topsep=1pt, label={}]
-    \item \textbf{Programming Languages:} Python, C, Java, SQL, R
-    \item \textbf{Machine Learning \& Deep Learning:} PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face Transformers, XGBoost
-    \item \textbf{AI Specializations:} Deep Learning, Reinforcement Learning, Computer Vision, NLP, LLM Agents \& Tool Calling, Agentic AI (ReAct), Transformers, RNN/LSTM, CNN, Ensemble Methods, k-NN \& Recommender Systems
-    \item \textbf{Data Engineering \& Analysis:} Pandas, NumPy, Feature Engineering, Feature Scaling (Log / Yeo-Johnson), Outlier Detection, Cross-Validation, Hyperparameter Tuning, ETL Pipelines, Matplotlib, Seaborn
-    \item \textbf{Software Engineering:} Git/GitHub, RESTful APIs, Agile/Scrum, Test-Driven Development, CI/CD fundamentals
-    \item \textbf{Robotics \& Embedded:} ROS2, LiDAR, ArUco Marker Detection, Kinematics, Autonomous Navigation
-    \item \textbf{Tools \& Environments:} Jupyter, Google Colab, VS Code, Anaconda, Local LLM Inference
+    \item \textbf{Programming Languages:} Python (fluent); working knowledge of C, Java, SQL, R, JavaScript, React
+    \item \textbf{Machine Learning \& Deep Learning:} PyTorch, TensorFlow, Scikit-learn, Hugging Face Transformers, OpenCV, YOLO, DINOv3, ResNet, Anomalib, PatchCore
+    \item \textbf{AI Specializations:} Deep Learning, Computer Vision (Industrial Quality Inspection), Anomaly Detection, Retrieval-Augmented Generation (RAG), Reinforcement Learning, Natural Language Processing, LLM Agents \& Tool Calling, Agentic AI (ReAct), Transformers, RNN/LSTM, CNN, k-NN \& Recommender Systems
+    \item \textbf{Data Engineering \& Analysis:} Pandas, NumPy, Feature Engineering, Feature Scaling (Log / Yeo-Johnson), Outlier Detection, Cross-Validation, Hyperparameter Tuning, ETL Pipelines, Data Visualization (Matplotlib)
+    \item \textbf{Software Engineering:} Git/GitHub, Azure DevOps, CI/CD Pipelines, Microsoft Azure, RESTful APIs, Agile/Scrum, Object-Oriented Design, Test-Driven Development
+    \item \textbf{Robotics \& Embedded:} Industrial Camera Systems, ROS2, LiDAR, ArUco Marker Detection, Autonomous Navigation
+    \item \textbf{Tools \& Environments:} Jupyter, Google Colab, VS Code, Linux, Anaconda, Microsoft Teams, Local LLM Inference
 \end{itemize}
 
 %-------------------- EDUCATION --------------------
@@ -99,15 +100,16 @@
 \resumeSubHeadingListStart
     \resumeSubheading
       {Virginia Tech}{Blacksburg, VA}
-      {Master of Engineering in Computer Engineering -- Concentration: Software and Machine Intelligence}{Expected: Dec 2026}
+      {Master of Engineering in Computer Engineering -- Concentration: Software and Machine Intelligence}{Expected: May 2027}
       \resumeItemListStart
-        \resumeItem{\textbf{Coursework:} Advanced Machine Learning, Applications of Machine Learning, Mathematical Foundations of Reinforcement Learning}
+        \resumeItem{\textbf{Relevant Coursework:} Advanced Machine Learning, Applications of Machine Learning, Computer Vision, World Models, Trustworthy Machine Learning, Mathematical Foundations of Reinforcement Learning}
       \resumeItemListEnd
     \resumeSubheading
       {James Madison University}{Harrisonburg, VA}
       {Bachelor of Science in Computer Science -- Minors: Robotics, Data Analytics}{Graduated: Dec 2025}
       \resumeItemListStart
-        \resumeItem{\textbf{GPA:} 3.39 ~|~ \textbf{Coursework:} Data Structures \& Algorithms, Artificial Intelligence, Autonomous Robotics, Machine Learning, Software Engineering}
+        \resumeItem{\textbf{GPA:} 3.39}
+        \resumeItem{\textbf{Relevant Coursework:} Data Structures \& Algorithms, Artificial Intelligence, Autonomous Robotics, Machine Learning, Software Engineering}
       \resumeItemListEnd
 \resumeSubHeadingListEnd
 
@@ -116,24 +118,31 @@
 \resumeSubHeadingListStart
 
     \resumeProjectHeading
-      {Agentic AI System --ReAct Architecture}{Python, PyTorch, Hugging Face Transformers, Local LLM Inference}
+      {Thought Cascade -- Agentic AI System (ReAct Architecture)}{Python, PyTorch, Hugging Face, Local LLMs}
       \resumeItemListStart
-        \resumeItem{Built an end-to-end \textbf{agentic AI system} implementing the \textbf{ReAct (Reasoning, Acting, Observing) pattern} (Yao et al., 2022) for iterative code debugging -- engineered thought generation, structured action parsing, environment observation, and history-aware prompting enabling self-correction across iterations.}
-        \resumeItem{Integrated and benchmarked four small LLMs locally (\textbf{Gemma-2 2B, Qwen-2.5 3B, Llama-3.2 3B, SmolLM 360M}) via Hugging Face Transformers, analyzing trade-offs between model size, latency, and agentic success rate.}
-        \resumeItem{Evaluated on the \textbf{QuixBugs} benchmark with pass@K metrics plus adversarial and property-based oracle tests, demonstrating iterative ReAct loops materially outperform single-shot prompting without increasing model size.}
+        \resumeItem{Built an end-to-end agentic AI system implementing the \textbf{ReAct} (Reasoning, Acting, Observing) pattern (Yao et al., 2022) for iterative code debugging with small, locally-hosted language models.}
+        \resumeItem{Engineered the full ReAct control loop -- thought generation, structured action parsing, environment observation, and history-aware prompting -- enabling models to self-correct across multiple iterations.}
+        \resumeItem{Integrated and benchmarked four small LLMs locally (Gemma-2 2B, Qwen-2.5 3B, Llama-3.2 3B, SmolLM 360M) via Hugging Face Transformers, analyzing trade-offs between model size, latency, and agentic success rate.}
+        \resumeItem{Evaluated on the \textbf{QuixBugs} benchmark with pass@K metrics plus adversarial and property-based oracle tests, demonstrating that iterative ReAct loops materially outperform single-shot prompting without increasing model size.}
+        \resumeItem{Designed a sandboxed execution harness that ingests candidate code, runs hidden test suites, and surfaces structured failure signals back to the agent as actionable observations.}
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {Music Recommender -- k-NN on Spotify Dataset}{Python, NumPy, Pandas, Scikit-learn, YouTube Data API}
+      {Music Recommender -- k-NN over 339K-Track Spotify Dataset}{Python, NumPy, Pandas, Scikit-learn, YouTube API}
       \resumeItemListStart
-        \resumeItem{Implemented \textbf{k-Nearest Neighbors from scratch} over a 339,801-track Spotify audio-features dataset, with a feature pipeline performing outlier detection, \textbf{log-transformation} of right-skewed features, and \textbf{Yeo-Johnson normalization} to materially improve distance-based similarity quality.}
-        \resumeItem{Compared multiple \textbf{distance metrics} (Euclidean, Cosine, Manhattan) and integrated the model into a \textbf{web application} via a Python adapter layer with \textbf{YouTube Data API} audio previews.}
+        \resumeItem{Implemented k-Nearest Neighbors from scratch to deliver content-based recommendations over a curated 339,801-track Spotify audio-features dataset.}
+        \resumeItem{Built a feature pipeline performing outlier detection, log-transformation of right-skewed features (instrumentalness, speechiness), and Yeo-Johnson normalization, materially improving distance-based similarity quality.}
+        \resumeItem{Designed and compared multiple distance metrics (Euclidean, Cosine, Manhattan) and analyzed their behavior on high-dimensional audio features.}
+        \resumeItem{Integrated the model into a web application via a Python adapter layer, exposing recommendations through a clean API contract and wiring in the YouTube Data API for audio previews.}
+        \resumeItem{Analyzed brute-force k-NN complexity and evaluated indexing strategies (KD-trees, ball trees) for scaling to millions of items.}
       \resumeItemListEnd
 
     \resumeProjectHeading
       {Patient Finder -- Autonomous Navigation System}{Python, ROS2, LiDAR, TurtleBot}
       \resumeItemListStart
-        \resumeItem{Developed a \textbf{TurtleBot autonomous navigation stack} that locates patients tagged with \textbf{ArUco fiducial markers} in a simulated environment, and used \textbf{LiDAR} range data with a monocular \textbf{camera} stream for obstacle avoidance and visual target localization, orchestrated by a \textbf{finite-state ROS2 controller} coordinating exploration, acquisition, approach, and photograph.}
+        \resumeItem{Developed a TurtleBot autonomous navigation stack capable of locating patients tagged with ArUco fiducial markers in real time within a simulated clinical environment.}
+        \resumeItem{Fused LiDAR range data with a monocular camera stream to perform simultaneous obstacle avoidance and visual target localization.}
+        \resumeItem{Designed a finite-state ROS2 controller to coordinate exploration, target acquisition, and approach behaviors, completing search-and-locate missions with consistent success.}
       \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -143,16 +152,17 @@
 \resumeSubHeadingListStart
     \resumeSubheading
       {Men's Club Volleyball}{Virginia Tech \& James Madison University}
-      {Player, JMU President (2024--2025), JMU Treasurer (2023--2024)}{2022 -- Present}
+      {Player, President (2024--2025), Treasurer (2023--2024)}{2022 -- Present}
       \resumeItemListStart
-        \resumeItem{\textbf{Virginia Tech (Player):} Contributed to a top-5 national finish at the NCVF Championships.}
-        \resumeItem{\textbf{JMU President / Treasurer:} Led a 30+ member organization; ran practices, managed competition logistics and travel, oversaw budget, coordinated fiscal compliance with the university, and managed the executive board.}
+        \resumeItem{\textbf{Virginia Tech (Player):} Contributed to a Top-5 national finish at the NCVF Championships.}
+        \resumeItem{\textbf{JMU President (2024--2025):} Led a 30+ member organization, ran practices, managed competition logistics, registered for leagues and tournaments, created merchandise, booked flights and hotels, oversaw budget, maintained communication with JMU, and managed the executive board.}
+        \resumeItem{\textbf{JMU Treasurer (2023--2024):} Managed the club's annual operating budget, coordinated travel funding, ensured fiscal compliance with university requirements, and filled out university-required forms.}
       \resumeItemListEnd
     \resumeSubheading
-      {Service \& Hospitality Roles}{Texas Roadhouse, Jimmy John's, Lifeguard}
+      {Service \& Hospitality Roles}{Texas Roadhouse, Jimmy John's In-Shop, Lifeguard}
       {Server, Sandwich Maker, Lifeguard}{2019 -- 2023}
       \resumeItemListStart
-        \resumeItem{Developed strong \textbf{communication, time-management, and team-coordination} skills across fast-paced, high-volume environments while funding education.}
+        \resumeItem{Developed strong communication, time-management, and team-coordination skills in fast-paced, high-volume environments.}
       \resumeItemListEnd
 \resumeSubHeadingListEnd
 
