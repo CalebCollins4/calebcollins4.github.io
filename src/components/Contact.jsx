@@ -57,7 +57,7 @@ const Contact = () => {
         <h2 className="section-title">Let's Connect</h2>
         <div className="title-underline"></div>
         <p className="contact-closing">
-          Open to ML roles, based in Blacksburg, VA.
+          Open to machine learning, AI, and software engineering roles in the Richmond, Raleigh-Durham, or Blacksburg areas.
         </p>
       </motion.div>
 
