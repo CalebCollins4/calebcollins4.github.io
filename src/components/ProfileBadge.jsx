@@ -1,26 +1,71 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroImg from '../assets/Headshot-Caleb Collins.jpeg';
+import heroImg from '../assets/headshot-badge.webp';
+
+const canHoverFine = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 const ProfileBadge = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const onPointerDown = (event) => {
+      if (rootRef.current && !rootRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (canHoverFine()) setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (canHoverFine()) setIsOpen(false);
+  };
+
+  const handleToggle = (event) => {
+    if (event.target.closest('a')) return;
+    if (!canHoverFine()) {
+      setIsOpen((open) => !open);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setIsOpen((open) => !open);
+    }
+    if (event.key === 'Escape') setIsOpen(false);
+  };
 
   return (
     <motion.div
-      className="profile-badge-container"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      ref={rootRef}
+      className={`profile-badge-container${isOpen ? ' is-open' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, x: -20, y: -20 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
     >
-      <div className="profile-badge-header">
-        <img src={heroImg} alt="Caleb Collins" className="profile-img" />
+      <button
+        type="button"
+        className="profile-badge-header"
+        aria-expanded={isOpen}
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+      >
+        <img src={heroImg} alt="Caleb Collins" className="profile-img" width="44" height="44" />
         <span className="profile-name">Caleb Collins</span>
-      </div>
+      </button>
 
       <AnimatePresence>
-        {isHovered && (
+        {isOpen && (
           <motion.div
             className="profile-contact-info"
             initial={{ opacity: 0, height: 0 }}

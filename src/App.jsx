@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
@@ -9,12 +10,21 @@ import About from "./components/About";
 import ProfileBadge from "./components/ProfileBadge";
 import "./App.css";
 
+const NAV_ITEMS = [
+  { id: "home-top", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
+
 function App() {
   const { scrollY } = useScroll();
-  
+  const [menuOpen, setMenuOpen] = useState(false);
+
   // Fade out both background and home content over the first 400px of vertical scroll
   const fadeOutOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  
+
   // Fade IN the embedding field as the home section fades out
   const fadeInOpacity = useTransform(scrollY, [300, 500], [0, 1]);
 
@@ -31,19 +41,19 @@ function App() {
   // Removed the y movement so the text stays completely still during entrance
   const itemVariants = {
     hidden: { opacity: 0 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       transition: {
         duration: 1.2,
-        ease: [0.25, 0.1, 0.25, 1.0], 
+        ease: [0.25, 0.1, 0.25, 1.0],
       }
     },
   };
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }
     }
@@ -53,18 +63,41 @@ function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleNavClick = (event, id) => {
+    event.preventDefault();
+    setMenuOpen(false);
+    scrollToSection(id);
+  };
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKey = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    const onPointerDown = (event) => {
+      const nav = document.querySelector('.nav-menu');
+      if (nav && !nav.contains(event.target)) setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [menuOpen]);
+
   return (
     <div className="app-container">
       <ProfileBadge />
 
       {/* Home Page Neural Network */}
-      <motion.div 
-        style={{ 
-          position: 'fixed', 
-          top: 0, left: 0, right: 0, bottom: 0, 
-          zIndex: 0, 
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          zIndex: 0,
           pointerEvents: 'none',
-          opacity: fadeOutOpacity 
+          opacity: fadeOutOpacity
         }}
       >
         <NeuralNetworkBackground />
@@ -72,36 +105,56 @@ function App() {
 
       {/* Embedding field — live k-NN classifier under the cursor for
           the rest of the site; fades in as the hero fades out. */}
-      <motion.div 
-        style={{ 
-          position: 'fixed', 
-          top: 0, left: 0, right: 0, bottom: 0, 
-          zIndex: 0, 
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          zIndex: 0,
           pointerEvents: 'none',
-          opacity: fadeInOpacity 
+          opacity: fadeInOpacity
         }}
       >
         <EmbeddingField />
       </motion.div>
 
-      <motion.nav 
-        className="nav-menu"
+      <motion.nav
+        className={`nav-menu${menuOpen ? ' is-open' : ''}`}
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
+        aria-label="Primary"
       >
-        <a className="nav-link" onClick={() => scrollToSection('home-top')}>Home</a>
-        <a className="nav-link" onClick={() => scrollToSection('about')}>About</a>
-        <a className="nav-link" onClick={() => scrollToSection('projects')}>Projects</a>
-        <a className="nav-link" onClick={() => scrollToSection('skills')}>Skills</a>
-        <a className="nav-link" onClick={() => scrollToSection('contact')}>Contact</a>
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="primary-nav-links"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div id="primary-nav-links" className="nav-links">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.id}
+              className="nav-link"
+              href={`#${item.id}`}
+              onClick={(event) => handleNavClick(event, item.id)}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </motion.nav>
 
       <div id="home-top" style={{ position: 'absolute', top: 0 }}></div>
 
       {/* Coverpage Section Wrapper to allow scrolling padding while the content stays sticky */}
       <div style={{ height: '100vh', width: '100%', position: 'relative', zIndex: 1 }}>
-        <motion.section 
+        <motion.section
           id="home"
           className="cover-section"
           variants={containerVariants}
@@ -120,16 +173,19 @@ function App() {
           }}
         >
           <AsciiName variants={itemVariants} />
-          
+
           <motion.h2 className="role-subtitle" variants={itemVariants}>
-            Software Engineer
+            Machine Learning Engineer
           </motion.h2>
+          <motion.p className="role-affiliation" variants={itemVariants}>
+            Volvo · JMU CS · Virginia Tech MEng
+          </motion.p>
         </motion.section>
       </div>
 
-      <div className="content-wrapper" style={{ position: 'relative', zIndex: 2 }}>
+      <main className="content-wrapper" style={{ position: 'relative', zIndex: 2 }}>
         {/* About Section */}
-        <motion.section 
+        <motion.section
           id="about"
           className="page-section"
           variants={sectionVariants}
@@ -141,7 +197,7 @@ function App() {
         </motion.section>
 
         {/* Projects Section */}
-        <motion.section 
+        <motion.section
           id="projects"
           className="page-section"
           variants={sectionVariants}
@@ -153,7 +209,7 @@ function App() {
         </motion.section>
 
         {/* Skills Section */}
-        <motion.section 
+        <motion.section
           id="skills"
           className="page-section"
           variants={sectionVariants}
@@ -165,7 +221,7 @@ function App() {
         </motion.section>
 
         {/* Contact Section */}
-        <motion.section 
+        <motion.section
           id="contact"
           className="page-section"
           variants={sectionVariants}
@@ -176,7 +232,13 @@ function App() {
         >
           <Contact />
         </motion.section>
-      </div>
+
+        <footer className="site-footer">
+          <span>Caleb Collins</span>
+          <span className="footer-separator" aria-hidden="true">·</span>
+          <span>Blacksburg, VA</span>
+        </footer>
+      </main>
     </div>
   );
 }

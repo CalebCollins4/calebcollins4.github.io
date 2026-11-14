@@ -8,17 +8,7 @@ import { SKILLS_DATA, SKILL_CATEGORIES, defaultSkill } from '../data/skills';
 const SkillChip = ({ skill }) => (
   <motion.div
     className="skill-chip"
-    style={{
-      color: skill.color,
-      borderColor: `${skill.color}33`,
-      backgroundColor: `${skill.color}10`,
-    }}
-    whileHover={{
-      scale: 1.06,
-      backgroundColor: `${skill.color}22`,
-      borderColor: `${skill.color}99`,
-      boxShadow: `0 8px 24px ${skill.color}33`,
-    }}
+    whileHover={{ scale: 1.06 }}
     transition={{ type: 'spring', stiffness: 320, damping: 20 }}
     variants={{
       hidden: { opacity: 0, y: 10 },
@@ -26,7 +16,7 @@ const SkillChip = ({ skill }) => (
     }}
   >
     <span className="skill-chip-icon">
-      {React.cloneElement(skill.icon, { size: 16 })}
+      {React.cloneElement(skill.icon, { size: 16, color: 'currentColor' })}
     </span>
     <span className="skill-chip-name">{skill.name}</span>
   </motion.div>

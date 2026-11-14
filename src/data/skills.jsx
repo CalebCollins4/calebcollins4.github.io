@@ -175,13 +175,13 @@ export const SKILL_CATEGORIES = [
   {
     id: 'languages',
     label: 'Programming Languages',
-    accent: '#4B8BBE',
+    accent: '#C8C8C8',
     items: ['Python', 'C', 'Java', 'SQL', 'R', 'JavaScript', 'React'],
   },
   {
     id: 'ml',
     label: 'Machine Learning & Deep Learning',
-    accent: '#EE4C2C',
+    accent: '#64C8FF',
     items: [
       'PyTorch',
       'TensorFlow',
@@ -198,7 +198,7 @@ export const SKILL_CATEGORIES = [
   {
     id: 'ai',
     label: 'AI Specializations',
-    accent: '#A855F7',
+    accent: '#64C8FF',
     items: [
       'Deep Learning',
       'Computer Vision',
@@ -217,7 +217,7 @@ export const SKILL_CATEGORIES = [
   {
     id: 'data',
     label: 'Data Engineering & Analysis',
-    accent: '#0EA5E9',
+    accent: '#FFAA50',
     items: [
       'Pandas',
       'NumPy',
@@ -233,7 +233,7 @@ export const SKILL_CATEGORIES = [
   {
     id: 'software',
     label: 'Software Engineering',
-    accent: '#22C55E',
+    accent: '#C8C8C8',
     items: [
       'Git/GitHub',
       'Azure DevOps',
@@ -249,7 +249,7 @@ export const SKILL_CATEGORIES = [
   {
     id: 'robotics',
     label: 'Robotics & Embedded',
-    accent: '#10B981',
+    accent: '#64C8FF',
     items: [
       'Industrial Camera Systems',
       'ROS2',
@@ -261,7 +261,7 @@ export const SKILL_CATEGORIES = [
   {
     id: 'tools',
     label: 'Tools & Environments',
-    accent: '#F37626',
+    accent: '#FFAA50',
     items: [
       'Jupyter',
       'Google Colab',

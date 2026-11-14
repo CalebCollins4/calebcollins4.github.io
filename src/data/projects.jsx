@@ -6,6 +6,78 @@
 
 export const PROJECTS = [
   {
+    id: 'volvo-inspection',
+    title: 'Volvo Quality Inspection',
+    subtitle: 'Computer Vision for Truck Manufacturing',
+    category: 'Machine Learning / Computer Vision',
+    tagline:
+      'Computer vision systems for quality control of trucks and the manufacturing line, with several models running in production.',
+    description:
+      'At Volvo Group I build computer vision systems for quality control of trucks and the truck manufacturing process. The work applies object detection, deep vision backbones, and anomaly detection models — YOLO, DINOv3, ResNet, and Anomalib/PatchCore — to automate visual inspection across several production applications. I run multiple concurrent ML projects end-to-end, from scoping requirements with stakeholders through image data collection, model training, and evaluation. Several models are deployed in production, while others are in testing on the line.',
+    highlights: [
+      'Develop computer vision systems for quality control of trucks and the manufacturing process, applying YOLO, DINOv3, ResNet, and Anomalib/PatchCore across several production applications.',
+      'Run multiple concurrent ML projects end-to-end, from scoping requirements with stakeholders through data collection, training, and evaluation; several models are in production while others are in testing on the line.',
+      'Partnered with plant maintenance teams to plan and install industrial cameras on the production line, building the image-capture infrastructure that feeds the inspection models.',
+      'Packaged the team\'s ML code as PyPI-style Python packages published through Azure DevOps, and used its version control and CI/CD pipelines to build, test, and ship applications.',
+    ],
+    metrics: [
+      { value: 'Production', label: 'Models on the line' },
+      { value: 'End-to-end', label: 'Cameras to deployment' },
+      { value: 'Multiple', label: 'Concurrent projects' },
+    ],
+    technologies: [
+      'Python',
+      'PyTorch',
+      'OpenCV',
+      'YOLO',
+      'DINOv3',
+      'ResNet',
+      'Anomalib',
+      'PatchCore',
+      'Anomaly Detection',
+      'Azure DevOps',
+      'Microsoft Azure',
+      'Industrial Camera Systems',
+      'Computer Vision',
+    ],
+    links: {
+      private: true,
+      privateNote: 'Company project. Source is not public.',
+    },
+    accent: '#64C8FF',
+  },
+  {
+    id: 'volvo-rag-hackathon',
+    title: 'RAG Hackathon',
+    subtitle: '1st Place · Company Hackathon at Volvo Group',
+    category: 'Machine Learning / NLP',
+    tagline:
+      'A first-place Retrieval-Augmented Generation system that pairs large language models with document retrieval.',
+    description:
+      'Won 1st place in a company hackathon at Volvo Group by building a Retrieval-Augmented Generation (RAG) system that pairs large language models with document retrieval.',
+    highlights: [
+      'Won 1st place in a company hackathon at Volvo Group.',
+      'Built a Retrieval-Augmented Generation (RAG) system that pairs large language models with document retrieval.',
+    ],
+    metrics: [
+      { value: '1st Place', label: 'Company hackathon' },
+      { value: 'RAG', label: 'System design' },
+      { value: 'Volvo Group', label: 'Hosted at' },
+    ],
+    technologies: [
+      'Python',
+      'RAG',
+      'NLP',
+    ],
+    links: {
+      private: true,
+      privateNote: 'Company project. Source is not public.',
+    },
+    accent: '#FFAA50',
+    badge: '1st Place',
+    visual: 'hackathon',
+  },
+  {
     id: 'thought-cascade',
     title: 'Thought Cascade',
     subtitle: 'Iterative Code-Repair Agent',
@@ -106,7 +178,7 @@ export const PROJECTS = [
       private: true,
       privateNote: 'Group class project. Repository is private.',
     },
-    accent: '#22314E',
+    accent: '#8AA4C8',
     course: 'James Madison University, Autonomous Robotics',
   },
 ];

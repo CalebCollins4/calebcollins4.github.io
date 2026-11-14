@@ -121,8 +121,13 @@ const ProjectCard = ({ project, onOpen }) => {
         )}
       </div>
 
-      <div className="project-category-tag" style={{ color: project.accent }}>
-        {project.category}
+      <div className="project-category-row">
+        <div className="project-category-tag" style={{ color: project.accent }}>
+          {project.category}
+        </div>
+        {project.badge && (
+          <span className="project-win-badge">{project.badge}</span>
+        )}
       </div>
 
       <h3 className="project-title">{project.title}</h3>
@@ -136,13 +141,8 @@ const ProjectCard = ({ project, onOpen }) => {
             <span
               key={skillName}
               className="skill-badge"
-              style={{
-                color: skillInfo.color,
-                borderColor: `${skillInfo.color}40`,
-                backgroundColor: `${skillInfo.color}15`,
-              }}
             >
-              {React.cloneElement(skillInfo.icon, { size: 14, style: { marginRight: '6px' } })}
+              {React.cloneElement(skillInfo.icon, { size: 14, color: 'currentColor', style: { marginRight: '6px' } })}
               {skillInfo.name}
             </span>
           );
@@ -183,7 +183,7 @@ const Projects = () => {
         <h2 className="section-title">Featured Projects</h2>
         <div className="title-underline"></div>
         <p className="section-subtitle">
-          End-to-end work spanning developer tools, recommender systems, and autonomous robotics. Click a card for the full build.
+          End-to-end work spanning industrial computer vision, developer tools, recommender systems, and autonomous robotics. Click a card for the full build.
         </p>
       </motion.div>
 

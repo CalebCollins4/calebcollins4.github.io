@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { X, Lock, CheckCircle2, ArrowUpRight, GraduationCap } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
@@ -39,7 +40,7 @@ const ProjectModal = ({ project, onClose }) => {
 
   const { links = {} } = project;
 
-  return (
+  return createPortal(
     <motion.div
       className="project-modal-backdrop"
       variants={backdropVariants}
@@ -72,11 +73,22 @@ const ProjectModal = ({ project, onClose }) => {
           <X size={20} />
         </button>
 
+        {project.visual === 'hackathon' && (
+          <div className="project-typo-visual project-typo-visual-modal">
+            <span className="project-typo-brand">Volvo Group</span>
+            <span className="project-typo-stat">1st Place</span>
+            <span className="project-typo-caption">Company hackathon</span>
+          </div>
+        )}
+
         <div className="project-modal-header">
           <div className="project-modal-category-row">
             <span className="project-modal-category" style={{ color: project.accent }}>
               {project.category}
             </span>
+            {project.badge && (
+              <span className="project-win-badge">{project.badge}</span>
+            )}
             {project.course && (
               <span className="project-modal-course">
                 <GraduationCap size={14} />
@@ -142,13 +154,8 @@ const ProjectModal = ({ project, onClose }) => {
                     <span
                       key={name}
                       className="skill-badge"
-                      style={{
-                        color: s.color,
-                        borderColor: `${s.color}50`,
-                        backgroundColor: `${s.color}18`,
-                      }}
                     >
-                      {React.cloneElement(s.icon, { size: 14, style: { marginRight: '6px' } })}
+                      {React.cloneElement(s.icon, { size: 14, color: 'currentColor', style: { marginRight: '6px' } })}
                       {s.name}
                     </span>
                   );
@@ -201,7 +208,8 @@ const ProjectModal = ({ project, onClose }) => {
           </section>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body,
   );
 };
 
